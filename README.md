@@ -1,2 +1,2 @@
 # ppom
-Parent pom
+Parent POM for all Maven projects
