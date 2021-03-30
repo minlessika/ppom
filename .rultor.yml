@@ -1,7 +1,8 @@
 architect:
 - baudoliver7
 install:
-- sudo gem install xcop -v 0.5.7
+- sudo gem install pdd -v 0.20.5
+- sudo gem install xcop -v 0.6
 assets:
   settings.xml: "baudoliver7/home#assets/minlessika/settings.xml"
   pubring.kbx: "baudoliver7/home#assets/pubring.kbx"
@@ -17,7 +18,7 @@ release:
   script: |
     mvn versions:set "-DnewVersion=${tag}" -e
     git commit -am "${tag}"
-    mvn clean deploy -Pqulice -Pminlessika --errors --settings ../settings.xml
-    mvn clean site-deploy -Psite --errors -Pminlessika --settings ../settings.xml
+    mvn clean deploy -Pqulice --errors --settings ../settings.xml
+    mvn clean site-deploy -Psite --errors --settings ../settings.xml
   commanders:
   - baudoliver7
