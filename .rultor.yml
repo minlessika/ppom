@@ -1,8 +1,8 @@
 architect:
 - baudoliver7
-decrypt:
-  settings.xml: "repo/settings.xml.asc"
-  pubring.kbx: "repo/pubring.kbx.asc"
+assets:
+  settings.xml: baudoliver7/home#assets/minlessika/settings.xml
+  pubring.kbx: baudoliver7/home#asserts/pubring.kbx
 merge:
   script: |-
     mvn clean install -Pqulice --errors --settings ../settings.xml
@@ -15,7 +15,7 @@ release:
   script: |
     mvn versions:set "-DnewVersion=${tag}" -e
     git commit -am "${tag}"
-    mvn clean deploy -Pqulice --errors --settings ../settings.xml
-    mvn clean site-deploy -Psite --errors --settings ../settings.xml
+    mvn clean deploy -Pqulice -Pminlessika --errors --settings ../settings.xml
+    mvn clean site-deploy -Psite --errors -Pminlessika --settings ../settings.xml
   commanders:
   - baudoliver7
