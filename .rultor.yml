@@ -1,3 +1,5 @@
+docker:
+  as_root: true
 architect:
 - baudoliver7
 assets:
