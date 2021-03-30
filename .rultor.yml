@@ -1,8 +1,8 @@
 architect:
 - baudoliver7
 assets:
-  settings.xml: baudoliver7/home#assets/minlessika/settings.xml
-  pubring.kbx: baudoliver7/home#asserts/pubring.kbx
+  settings.xml: "baudoliver7/home#assets/minlessika/settings.xml"
+  pubring.kbx: "baudoliver7/home#assets/pubring.kbx"
 merge:
   script: |-
     mvn clean install -Pqulice --errors --settings ../settings.xml
