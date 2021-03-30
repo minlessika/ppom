@@ -1,5 +1,7 @@
 architect:
 - baudoliver7
+install:
+- sudo gem install xcop -v 0.5.7
 assets:
   settings.xml: "baudoliver7/home#assets/minlessika/settings.xml"
   pubring.kbx: "baudoliver7/home#assets/pubring.kbx"
