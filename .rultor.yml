@@ -1,0 +1,25 @@
+architect:
+- baudoliver7
+decrypt:
+  settings.xml: "repo/settings.xml.asc"
+  pubring.kbx: "repo/pubring.kbx.asc"
+merge:
+  script: |-
+    mvn clean install -Pqulice --errors --settings ../settings.xml
+    mvn clean
+  commanders:
+  - baudoliver7
+deploy:
+  script: |-
+    mvn clean deploy -Pqulice --errors --settings ../settings.xml
+    mvn clean
+env:
+  MAVEN_OPTS: -XX:MaxPermSize=256m -Xmx1g
+release:
+  script: |
+    mvn versions:set "-DnewVersion=${tag}" -e
+    git commit -am "${tag}"
+    mvn clean deploy -Pqulice -Psonatype -Pjcabi --errors --settings ../settings.xml
+    mvn clean site-deploy -Psite --errors -Pjcabi --settings ../settings.xml
+  commanders:
+  - baudoliver7
