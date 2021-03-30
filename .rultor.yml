@@ -1,7 +1,8 @@
-docker:
-  as_root: true
 architect:
 - baudoliver7
+install:
+- sudo gpgconf --kill dirmngr
+- sudo chown -R $USER ~/.gnupg
 assets:
   settings.xml: "baudoliver7/home#assets/minlessika/settings.xml"
   pubring.kbx: "baudoliver7/home#assets/pubring.kbx"
