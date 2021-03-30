@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
@@ -12,14 +13,12 @@
   <name>ppom</name>
   <description>Parent POM for all Minlessika Maven projects</description>
   <url>https://github.com/Minlessika/ppom</url>
-
   <licenses>
     <license>
       <name>MIT License</name>
       <url>https://github.com/Minlessika/ppom/blob/master/LICENSE.txt</url>
     </license>
   </licenses>
-
   <developers>
     <developer>
       <id>1</id>
@@ -34,18 +33,15 @@
       <timezone>0</timezone>
     </developer>
   </developers>
-
   <issueManagement>
     <system>GitHub</system>
     <url>https://github.com/Minlessika/ppom/issues</url>
   </issueManagement>
-
   <scm>
-	<connection>scm:git:git://github.com/Minlessika/ppom.git</connection>
-	<developerConnection>scm:git:git://github.com:Minlessika/ppom.git</developerConnection>
-	<url>http://github.com/Minlessika/ppom/tree/master</url>
+    <connection>scm:git:git://github.com/Minlessika/ppom.git</connection>
+    <developerConnection>scm:git:git://github.com:Minlessika/ppom.git</developerConnection>
+    <url>http://github.com/Minlessika/ppom/tree/master</url>
   </scm>
-
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
@@ -54,7 +50,6 @@
     <javax.json.version>1.1.4</javax.json.version>
     <qulice.license>${project.basedir}/LICENSE.txt</qulice.license>
   </properties>
-
   <dependencyManagement>
     <dependencies>
       <dependency>
