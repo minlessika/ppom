@@ -17,4 +17,4 @@ release:
     pdd -f /dev/null
     mvn versions:set "-DnewVersion=${tag}" --settings ../settings.xml
     git commit -am "${tag}"
-    mvn clean deploy -Pminlessika,sonatype,qulice,gpg-sign --errors --settings ../settings.xml
+    mvn clean deploy -Psite,minlessika --errors --settings ../settings.xml
