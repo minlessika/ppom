@@ -24,18 +24,18 @@ SOFTWARE.
  -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.jcabi</groupId>
-    <artifactId>parent</artifactId>
-    <version>0.51.2</version>
-  </parent>
-  <groupId>com.minlessika</groupId>
+  <groupId>com.minlessika.incubator</groupId>
   <artifactId>ppom</artifactId>
-  <version>0.1.0</version>
+  <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>ppom</name>
+  <name>parent</name>
   <description>Parent POM for all Minlessika Maven projects</description>
   <url>https://github.com/Minlessika/ppom</url>
+  <inceptionYear>2018</inceptionYear>
+  <organization>
+    <name>Minlessika</name>
+    <url>https://www.minlessika.com</url>
+  </organization>
   <licenses>
     <license>
       <name>MIT License</name>
@@ -65,14 +65,45 @@ SOFTWARE.
     <developerConnection>scm:git:git://github.com:Minlessika/ppom.git</developerConnection>
     <url>http://github.com/Minlessika/ppom/tree/master</url>
   </scm>
+  <distributionManagement>
+    <repository>
+      <id>oss.sonatype.org</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+    </repository>
+    <snapshotRepository>
+      <id>oss.sonatype.org</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <site>
+      <id>minlessika.com</id>
+      <url>https://www.minlessika.com/</url>
+    </site>
+  </distributionManagement>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <!--
+    ISO 8601, see http://en.wikipedia.org/wiki/ISO_8601. This
+    property is defined in order to give us an ability to use ${maven.build.timestamp}
+    later in the file
+    -->
+    <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <junit-platform.version>5.7.1</junit-platform.version>
-    <javax.json.version>1.1.4</javax.json.version>
-    <qulice.license>${project.basedir}/LICENSE.txt</qulice.license>
   </properties>
+  <repositories>
+    <!--
+    You should keep it empty in your project.
+    @see http://www.sonatype.com/people/2009/02/why-putting-repositories-in-your-poms-is-a-bad-idea/
+    -->
+  </repositories>
+  <pluginRepositories>
+    <!--
+    You should keep it empty in your project.
+    @see http://www.sonatype.com/people/2009/02/why-putting-repositories-in-your-poms-is-a-bad-idea/
+    -->
+  </pluginRepositories>
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -97,10 +128,235 @@ SOFTWARE.
         <artifactId>cactoos</artifactId>
         <version>0.49</version>
       </dependency>
-    </dependencies>
-  </dependencyManagement>
-  <dependencies>
-    <dependency>
+      <dependency>
+        <!--
+        JDBC wrapper.
+        @see http://jdbc.jcabi.com/
+        -->
+        <groupId>com.jcabi</groupId>
+        <artifactId>jcabi-jdbc</artifactId>
+        <version>0.17.1</version>
+      </dependency>
+      <dependency>
+        <!-- JSON API -->
+        <groupId>javax.json</groupId>
+        <artifactId>javax.json-api</artifactId>
+        <version>1.1.4</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <!-- JSON reference implementation -->
+        <groupId>org.glassfish</groupId>
+        <artifactId>javax.json</artifactId>
+        <version>1.1.3</version>
+        <scope>runtime</scope>
+      </dependency>
+      <dependency>
+        <!-- JSR-311 JAX-RS API -->
+        <groupId>javax.ws.rs</groupId>
+        <artifactId>jsr311-api</artifactId>
+        <version>1.1.1</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <!-- JAXB API -->
+        <groupId>javax.xml.bind</groupId>
+        <artifactId>jaxb-api</artifactId>
+        <version>2.4.0-b180725.0427</version>
+        <exclusions>
+          <exclusion>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jsr173_api</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <!--
+        Google Guava
+        @see https://code.google.com/p/guava-libraries/
+        -->
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>21.0-rc2</version>
+      </dependency>
+      <dependency>
+        <!--
+        Commons Lang3
+        @see http://commons.apache.org/lang/
+        -->
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>3.8</version>
+      </dependency>
+      <dependency>
+        <!--
+        Commons Text
+        @see http://commons.apache.org/text/
+        -->
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-text</artifactId>
+        <version>1.3</version>
+      </dependency>
+      <dependency>
+        <!--
+        Commons Collections
+        @see https://commons.apache.org/proper/commons-collections/
+        -->
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-collections4</artifactId>
+        <version>4.3</version>
+      </dependency>
+      <dependency>
+        <!--
+        Commons Math3
+        @see http://commons.apache.org/proper/commons-math/
+        -->
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-math3</artifactId>
+        <version>3.6.1</version>
+      </dependency>
+      <dependency>
+        <!--
+        Base64 and other codecs
+        @see http://commons.apache.org/codec/
+        -->
+        <groupId>commons-codec</groupId>
+        <artifactId>commons-codec</artifactId>
+        <version>1.12</version>
+      </dependency>
+      <dependency>
+        <!--
+        Net utils.
+        @see http://commons.apache.org/net/
+        -->
+        <groupId>commons-net</groupId>
+        <artifactId>commons-net</artifactId>
+        <version>3.7.2</version>
+      </dependency>
+      <dependency>
+        <!--
+        For file/stream manipulations
+        @see http://commons.apache.org/io/
+        -->
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>2.7</version>
+      </dependency>
+      <dependency>
+        <!--
+        JSR-303 Vaidation API.
+        -->
+        <groupId>javax.validation</groupId>
+        <artifactId>validation-api</artifactId>
+        <version>2.0.1.Final</version>
+      </dependency>
+      <dependency>
+        <!--
+        JSR-303 implementation by Hibernate.
+        -->
+        <groupId>org.hibernate.validator</groupId>
+        <artifactId>hibernate-validator</artifactId>
+        <version>6.1.6.Final</version>
+      </dependency>
+      <dependency>
+        <!-- Required for Hibernate validator -->
+        <groupId>javax.el</groupId>
+        <artifactId>javax.el-api</artifactId>
+        <version>3.0.1-b06</version>
+      </dependency>
+      <dependency>
+        <!-- Servlet API -->
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>4.0.1</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <!--
+        Compile-time annotations.
+        @see http://projectlombok.org/features/index.html
+        -->
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.12</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <!-- XML APIs. -->
+        <groupId>xml-apis</groupId>
+        <artifactId>xml-apis</artifactId>
+        <!-- 1.4.01 is the latest version, don't upgrade it unless
+        you explicitly check it in Maven Central. Version 2.0.2 is published
+        there, but it's outdated (June 2007), while 1.4.01 is the latest.
+        -->
+        <version>1.4.01</version>
+        <!-- don't change this line, 1.4.01 is the right/latest version -->
+      </dependency>
+      <dependency>
+        <!--
+        We are using JUnit framework for unit test organization
+        and management. This framework is the most stable and mature
+        in the market. Other options considered: TestNG.
+        @link http://www.junit.org/
+        -->
+        <groupId>org.junit</groupId>
+        <artifactId>junit-bom</artifactId>
+        <version>5.6.2</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <!--
+        Assertions and matchers for unit tests.
+        @link http://code.google.com/p/hamcrest/wiki/Tutorial
+        -->
+        <groupId>org.hamcrest</groupId>
+        <artifactId>hamcrest</artifactId>
+        <version>2.2</version>
+      </dependency>
+      <dependency>
+        <!--
+        Mockito is used as a mocking library during testing.
+        Other options: jMock.
+        @link http://www.mockito.org/
+        -->
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <version>3.5.0</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <!-- Forward all SLF4J calls to LOG4J. -->
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-log4j12</artifactId>
+        <version>1.8.0-beta1</version>
+      </dependency>
+      <dependency>
+        <!-- Use LOG4J logging facility for all loggings. -->
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>1.2.17</version>
+      </dependency>
+      <dependency>
+        <!--
+        ANTLR3 Parser/Lexer
+        @link http://www.antlr.org/
+        -->
+        <groupId>org.antlr</groupId>
+        <artifactId>antlr-runtime</artifactId>
+        <version>3.5.2</version>
+      </dependency>
+      <dependency>
+        <groupId>org.antlr</groupId>
+        <artifactId>antlr4-runtime</artifactId>
+        <version>4.8-1</version>
+      </dependency>
+      <dependency>
       <groupId>com.google.code.findbugs</groupId>
       <artifactId>annotations</artifactId>
       <version>3.0.1</version>
@@ -116,28 +372,45 @@ SOFTWARE.
         </exclusion>
       </exclusions>
     </dependency>
-  </dependencies>
+    </dependencies>
+  </dependencyManagement>
   <build>
     <pluginManagement>
       <plugins>
+        <plugin>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <version>3.0.0</version>
+          <dependencies>
+            <dependency>
+              <groupId>ant-contrib</groupId>
+              <artifactId>ant-contrib</artifactId>
+              <version>1.0b3</version>
+              <exclusions>
+                <exclusion>
+                  <groupId>ant</groupId>
+                  <artifactId>ant</artifactId>
+                </exclusion>
+              </exclusions>
+            </dependency>
+          </dependencies>
+        </plugin>
+        <plugin>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <version>3.3.0</version>
+        </plugin>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
         </plugin>
         <plugin>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>3.0.2</version>
-        </plugin>
-        <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.8.0</version>
+          <version>3.8.1</version>
           <configuration>
+            <source>${maven.compiler.source}</source>
+            <target>${maven.compiler.target}</target>
             <optimize>true</optimize>
             <showWarnings>true</showWarnings>
             <showDeprecation>true</showDeprecation>
-            <source>${maven.compiler.source}</source>
-            <target>${maven.compiler.target}</target>
-            <useIncrementalCompilation>false</useIncrementalCompilation>
             <compilerArgs>
               <arg>-Xlint</arg>
               <arg>-Werror</arg>
@@ -146,81 +419,491 @@ SOFTWARE.
               <arg>-Xlint:-varargs</arg>
               <!-- @see https://blogs.oracle.com/darcy/entry/bootclasspath_older_source -->
               <arg>-Xlint:-options</arg>
+              <!-- @see http://netbeans.org/bugzilla/show_bug.cgi?format=multiple&id=208666 -->
+              <!-- this is to avoid a problem with ANTLR and JDK7 -->
+              <arg>-Xlint:-classfile</arg>
               <!-- ignore APT warnings -->
               <arg>-Xlint:-processing</arg>
             </compilerArgs>
+            <testExcludes>
+              <exclude>**/package-info.java</exclude>
+            </testExcludes>
           </configuration>
         </plugin>
         <plugin>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>3.0.0-M3</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-failsafe-plugin</artifactId>
-          <version>3.0.0-M4</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>3.0.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-install-plugin</artifactId>
-          <version>2.5.2</version>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>3.1.2</version>
         </plugin>
         <plugin>
           <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.8.2</version>
+          <version>3.0.0-M1</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-failsafe-plugin</artifactId>
+          <version>3.0.0-M5</version>
+          <configuration>
+            <encoding>${project.build.sourceEncoding}</encoding>
+            <failIfNoSpecifiedTests>false</failIfNoSpecifiedTests>
+            <forkCount>0</forkCount>
+            <parallel>all</parallel>
+            <parallelTestsTimeoutForcedInSeconds>0</parallelTestsTimeoutForcedInSeconds>
+            <parallelTestsTimeoutInSeconds>0</parallelTestsTimeoutInSeconds>
+            <perCoreThreadCount>true</perCoreThreadCount>
+            <runOrder>random</runOrder>
+            <threadCount>8</threadCount>
+            <trimStackTrace>false</trimStackTrace>
+          </configuration>
+        </plugin>
+        <plugin>
+          <artifactId>maven-help-plugin</artifactId>
+          <version>3.2.0</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>3.0.0-M1</version>
+          <configuration>
+            <createChecksum>true</createChecksum>
+          </configuration>
+        </plugin>
+        <plugin>
+          <artifactId>maven-invoker-plugin</artifactId>
+          <version>3.2.1</version>
+          <configuration>
+            <mergeUserSettings>true</mergeUserSettings>
+            <cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
+            <debug>false</debug>
+            <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
+            <noLog>false</noLog>
+            <postBuildHookScript>verify</postBuildHookScript>
+            <preBuildHookScript>setup</preBuildHookScript>
+            <projectsDirectory>src/it</projectsDirectory>
+            <settingsFile>${basedir}/src/it/settings.xml</settingsFile>
+            <showErrors>true</showErrors>
+            <showVersion>false</showVersion>
+            <streamLogs>true</streamLogs>
+          </configuration>
+        </plugin>
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.2.0</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>3.2.0</version>
+          <configuration>
+            <source>8</source>
+            <tags>
+              <tag>
+                <name>todo</name>
+                <placement>X</placement>
+              </tag>
+              <tag>
+                <name>checkstyle</name>
+                <placement>X</placement>
+              </tag>
+            </tags>
+          </configuration>
+        </plugin>
+        <plugin>
+          <artifactId>maven-plugin-plugin</artifactId>
+          <version>3.6.0</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>3.0.0-M1</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.2.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-site-plugin</artifactId>
-          <version>3.7.1</version>
+          <version>3.9.1</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.apache.maven.doxia</groupId>
+              <artifactId>doxia-module-markdown</artifactId>
+              <version>1.9.1</version>
+            </dependency>
+          </dependencies>
         </plugin>
         <plugin>
-          <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>3.0.0</version>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>3.2.1</version>
         </plugin>
         <plugin>
-          <groupId>com.qulice</groupId>
-          <artifactId>qulice-maven-plugin</artifactId>
-          <version>0.18.19</version>
+          <!--
+          Starts unit tests, protocols their results and creates
+          a summary report. It is required to send testing protocol
+          to the STDOUT as well, not only to the file.
+          -->
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.0.0-M5</version>
           <configuration>
-            <license>file:${qulice.license}</license>
-            <excludes combine.children="append">
-              <exclude>findbugs:.*</exclude>
-              <exclude>duplicatefinder:.*</exclude>
-              <exclude>dependencies:.*</exclude>
-            </excludes>
+            <useFile>false</useFile>
+            <runOrder>random</runOrder>
+            <trimStackTrace>false</trimStackTrace>
+            <failIfNoTests>false</failIfNoTests>
+            <failIfNoSpecifiedTests>true</failIfNoSpecifiedTests>
+            <parallel>all</parallel>
+            <parallelTestsTimeoutInSeconds>0</parallelTestsTimeoutInSeconds>
+            <parallelTestsTimeoutForcedInSeconds>0</parallelTestsTimeoutForcedInSeconds>
+            <perCoreThreadCount>true</perCoreThreadCount>
+            <threadCount>4</threadCount>
           </configuration>
-          <executions>
-            <execution>
-              <goals>
-                <goal>check</goal>
-              </goals>
-            </execution>
-          </executions>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <version>2.10.4</version>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>3.3.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>versions-maven-plugin</artifactId>
+          <version>2.1</version>
+          <!-- keep it at 2.1, see #42 -->
           <configuration>
-            <!--
-            using 8 version for javadoc sources,
-            since we don't use JDK9 modules,
-            and doesn't have module-info.java files
-            -->
-            <source>8</source>
-            <!--
-            ignore javadoc lint, since `checkstyle` and `todo`
-            are not valid javadoc statements
-            -->
-            <additionalparam>-Xdoclint:none</additionalparam>
+            <generateBackupPoms>false</generateBackupPoms>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>com.github.github</groupId>
+          <artifactId>site-maven-plugin</artifactId>
+          <version>0.12</version>
+        </plugin>
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>0.8.6</version>
+        </plugin>
+        <plugin>
+          <groupId>org.eluder.coveralls</groupId>
+          <artifactId>coveralls-maven-plugin</artifactId>
+          <version>4.3.0</version>
+          <configuration>
+            <timestampFormat>yyyy-MM-dd'T'HH:mm:ss</timestampFormat>
           </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
   </build>
   <profiles>
+    <profile>
+      <!--
+      Enable unit testing. The profile is activated when you have
+      src/test/java directory in the project. It will add junit, hamcrest,
+      and mockito artifacts to the classpath ("test" scope).
+      -->
+      <id>junit</id>
+      <activation>
+        <file>
+          <exists>${basedir}/src/test/java</exists>
+        </file>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>org.junit.jupiter</groupId>
+          <artifactId>junit-jupiter-api</artifactId>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.junit.jupiter</groupId>
+          <artifactId>junit-jupiter-engine</artifactId>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.hamcrest</groupId>
+          <artifactId>hamcrest</artifactId>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.mockito</groupId>
+          <artifactId>mockito-core</artifactId>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <!--
+      Enable LOG4J for testing and SLF4J binding. The profile is activated
+      when you have src/test/resources/log4j.properties. When this file
+      is present it means that you want your SLF4J logs to be sent to
+      LOG4J during testing time. The profile will add required bindings
+      to the classpath.
+      -->
+      <id>slf4j</id>
+      <activation>
+        <file>
+          <exists>${basedir}/src/test/resources/log4j.properties</exists>
+        </file>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <!--
+      Sign artifacts before installation with GPG. To enable
+      this profile you should have "gpg.keyname" property defined.
+      -->
+      <id>gpg-sign</id>
+      <activation>
+        <property>
+          <name>gpg.keyname</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <!--
+            To GPG-sign the artifact before deployment to foreign
+            repository. GPG keys have to be provided in CI
+            environment, and published beforehand.
+            @link http://www.sonatype.com/people/2010/01/how-to-generate-pgp-signatures-with-maven/
+            -->
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.6</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+                <configuration>
+                  <gpgArguments>
+                    <arg>--pinentry-mode</arg>
+                    <arg>loopback</arg>
+                  </gpgArguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>doclint-java8-disable</id>
+      <activation>
+        <jdk>[1.8,)</jdk>
+      </activation>
+      <properties>
+        <javadoc.opts>-Xdoclint:none</javadoc.opts>
+      </properties>
+    </profile>
+    <profile>
+      <!--
+      Xdoc is a static validator of XML formatting.
+      @see https://github.com/yegor256/xdoc/
+      -->
+      <id>xdoc</id>
+      <activation>
+        <file>
+          <exists>${basedir}/LICENSE.txt</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.8</version>
+            <executions>
+              <execution>
+                <phase>verify</phase>
+                <configuration>
+                  <target>
+                    <taskdef resource="net/sf/antcontrib/antcontrib.properties" classpathref="maven.plugin.classpath"/>
+                    <property environment="env"/>
+                    <available file="xcop" filepath="${env.PATH}" property="xcop.present"/>
+                    <if>
+                      <equals arg1="${xcop.present}" arg2="true"/>
+                      <then>
+                        <patternset id="xcop.main">
+                          <include name="**/*.xml"/>
+                          <include name="**/*.xsl"/>
+                          <include name="**/*.xsd"/>
+                          <exclude name="**/target/**/*"/>
+                          <exclude name=".idea/**/*"/>
+                        </patternset>
+                        <condition property="xcop.excludes.defined">
+                          <isreference refid="xcop.excludes"/>
+                        </condition>
+                        <if>
+                          <equals arg1="${xcop.excludes.defined}" arg2="true"/>
+                          <then>
+                            <fileset dir="." id="files">
+                              <patternset refid="xcop.main"/>
+                              <patternset refid="xcop.excludes"/>
+                            </fileset>
+                            <pathconvert refid="files" property="converted" pathsep=" "/>
+                          </then>
+                          <else>
+                            <fileset dir="." id="files">
+                              <patternset refid="xcop.main"/>
+                            </fileset>
+                            <pathconvert refid="files" property="converted" pathsep=" "/>
+                          </else>
+                        </if>
+                        <condition property="os.windows">
+                          <os family="windows"/>
+                        </condition>
+                        <if>
+                          <equals arg1="${os.windows}" arg2="true"/>
+                          <then>
+                            <exec executable="cmd" failonerror="true">
+                              <arg line="/c xcop"/>
+                              <arg value="--license"/>
+                              <arg value="LICENSE.txt"/>
+                              <arg line="${converted}"/>
+                            </exec>
+                          </then>
+                          <else>
+                            <exec executable="xcop" failonerror="true">
+                              <arg value="--license"/>
+                              <arg value="LICENSE.txt"/>
+                              <arg line="${converted}"/>
+                            </exec>
+                          </else>
+                        </if>
+                      </then>
+                      <else>
+                        <echo message="XCOP is not available in PATH"/>
+                      </else>
+                    </if>
+                  </target>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <!--
+      Static quality analysis with Qulice and other tools.
+      This profile is supposed to be activated in continuous
+      integration environment, right before the final approval
+      of the build. It runs a number of static code analysis
+      tools to validate and approve the quality of source
+      code and the SCM repository.
+      @see http://www.jcabi.com/jcabi-parent/profile-qulice.html
+      -->
+      <id>qulice</id>
+      <build>
+        <plugins>
+          <plugin>
+            <!--
+            Qulice-maven-plugin is a compound static analysis
+            tool that aggregates Checkstyle, PMD, FindBugs,
+            CodeNarc (for Groovy code) and a few other analyzers.
+            Qulice also configures them correctly to enable the
+            most important rules.
+            @see http://www.qulice.com/qulice-maven-plugin/
+            -->
+            <groupId>com.qulice</groupId>
+            <artifactId>qulice-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>qulice-check</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>check</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <!--
+      The profile deploys all artifacts to oss.sonatype.org
+      repository (if you're registered there). It also skips
+      default deployment plugin.
+      @see http://www.jcabi.com/jcabi-parent/profile-sonatype.html
+      -->
+      <id>sonatype</id>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <artifactId>maven-deploy-plugin</artifactId>
+              <configuration>
+                <skip>true</skip>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+        <plugins>
+          <plugin>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>jcabi-sources</id>
+                <configuration>
+                  <forceCreation>true</forceCreation>
+                </configuration>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <!--
+            Generate -javadoc.jar artifact, required by Maven Central.
+            -->
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>jcabi-javadoc</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+                <configuration>
+                  <additionalparam>${javadoc.opts}</additionalparam>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <!-- @see http://www.sonatype.com/books/nexus-book/reference/staging-sect-deployment.html -->
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>1.6.7</version>
+            <extensions>true</extensions>
+            <configuration>
+              <serverId>oss.sonatype.org</serverId>
+              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+              <description>${project.version}</description>
+              <stagingProgressTimeoutMinutes>10</stagingProgressTimeoutMinutes>
+            </configuration>
+            <executions>
+              <execution>
+                <id>jcabi-deploy-to-sonatype</id>
+                <phase>deploy</phase>
+                <goals>
+                  <goal>deploy</goal>
+                  <goal>release</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
     <profile>
       <id>jacoco</id>
       <build>
@@ -255,85 +938,6 @@ SOFTWARE.
                 <id>jacoco-report-integration</id>
                 <goals>
                   <goal>report-integration</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>site</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.sonatype.plugins</groupId>
-            <artifactId>nexus-staging-maven-plugin</artifactId>
-            <version>1.6.7</version>
-            <extensions>true</extensions>
-            <configuration>
-              <serverId>ossrh</serverId>
-              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-              <autoReleaseAfterClose>true</autoReleaseAfterClose>
-            </configuration>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-source-plugin</artifactId>
-            <version>2.2.1</version>
-            <executions>
-              <execution>
-                <id>attach-sources</id>
-                <goals>
-                  <goal>jar-no-fork</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <version>3.0.1</version>
-            <configuration>
-              <tags>
-                <tag>
-                  <name>checkstyle</name>
-                  <placement>X</placement>
-                </tag>
-              </tags>
-            </configuration>
-            <executions>
-              <execution>
-                <id>attach-javadocs</id>
-                <goals>
-                  <goal>jar</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <version>1.6</version>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <artifactId>maven-deploy-plugin</artifactId>
-            <version>2.8.2</version>
-            <executions>
-              <execution>
-                <id>default-deploy</id>
-                <phase>deploy</phase>
-                <goals>
-                  <goal>deploy</goal>
                 </goals>
               </execution>
             </executions>
