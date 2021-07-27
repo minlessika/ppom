@@ -357,21 +357,21 @@ SOFTWARE.
         <version>4.8-1</version>
       </dependency>
       <dependency>
-      <groupId>com.google.code.findbugs</groupId>
-      <artifactId>annotations</artifactId>
-      <version>3.0.1</version>
-      <scope>provided</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>net.jcip</groupId>
-          <artifactId>jcip-annotations</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>com.google.code.findbugs</groupId>
-          <artifactId>jsr305</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
+        <groupId>com.google.code.findbugs</groupId>
+        <artifactId>annotations</artifactId>
+        <version>3.0.1</version>
+        <scope>provided</scope>
+        <exclusions>
+          <exclusion>
+            <groupId>net.jcip</groupId>
+            <artifactId>jcip-annotations</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
     </dependencies>
   </dependencyManagement>
   <build>
@@ -714,7 +714,6 @@ SOFTWARE.
         <plugins>
           <plugin>
             <artifactId>maven-antrun-plugin</artifactId>
-            <version>1.8</version>
             <executions>
               <execution>
                 <phase>verify</phase>
