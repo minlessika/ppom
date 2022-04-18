@@ -878,7 +878,7 @@ SOFTWARE.
             <extensions>true</extensions>
             <configuration>
               <serverId>oss.sonatype.org</serverId>
-              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+              <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
               <description>${project.version}</description>
               <stagingProgressTimeoutMinutes>10</stagingProgressTimeoutMinutes>
             </configuration>
