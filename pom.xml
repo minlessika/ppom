@@ -815,6 +815,9 @@ SOFTWARE.
                 </goals>
               </execution>
             </executions>
+            <configuration>
+              <license>file:${basedir}/LICENSE.txt</license>
+            </configuration>
           </plugin>
         </plugins>
       </build>
