@@ -156,7 +156,7 @@ SOFTWARE.
         <!-- JAXB API -->
         <groupId>javax.xml.bind</groupId>
         <artifactId>jaxb-api</artifactId>
-        <version>2.4.0-b180725.0427</version>
+        <version>2.4.0-b180830.0359</version>
         <exclusions>
           <exclusion>
             <groupId>javax.xml.bind</groupId>
