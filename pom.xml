@@ -59,6 +59,7 @@ SOFTWARE.
     <url>http://github.com/minlessika/ppom/tree/master</url>
   </scm>
   <distributionManagement>
+    <downloadUrl>https://oss.sonatype.org/content/groups/public</downloadUrl>
     <repository>
       <id>oss.sonatype.org</id>
       <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
@@ -878,7 +879,7 @@ SOFTWARE.
             <extensions>true</extensions>
             <configuration>
               <serverId>oss.sonatype.org</serverId>
-              <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
               <description>${project.version}</description>
               <stagingProgressTimeoutMinutes>10</stagingProgressTimeoutMinutes>
             </configuration>
