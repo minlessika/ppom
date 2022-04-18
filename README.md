@@ -3,26 +3,26 @@
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
 [![DevOps By Rultor.com](http://www.rultor.com/b/ppom/ppom)](http://www.rultor.com/p/ppom/ppom)
 
-[![Javadoc](http://www.javadoc.io/badge/com.minlessika.incubator/ppom.svg)](http://www.javadoc.io/doc/com.minlessika.incubator/ppom)
-[![PDD status](http://www.0pdd.com/svg?name=Minlessika/ppom)](http://www.0pdd.com/p?name=Minlessika/ppom)
-[![Maven Central](https://img.shields.io/maven-central/v/com.minlessika.incubator/ppom.svg)](https://maven-badges.herokuapp.com/maven-central/com.minlessika.incubator/ppom)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/Minlessika/ppom/blob/master/LICENSE.txt)
+[![Javadoc](http://www.javadoc.io/badge/com.minlessika.erp/ppom.svg)](http://www.javadoc.io/doc/com.minlessika.erp/ppom)
+[![PDD status](http://www.0pdd.com/svg?name=minlessika/ppom)](http://www.0pdd.com/p?name=minlessika/ppom)
+[![Maven Central](https://img.shields.io/maven-central/v/com.minlessika.erp/ppom.svg)](https://maven-badges.herokuapp.com/maven-central/com.minlessika.erp/ppom)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/minlessika/ppom/blob/master/LICENSE.txt)
 
-[![Test Coverage](https://img.shields.io/codecov/c/github/Minlessika/ppom.svg)](https://codecov.io/github/Minlessika/ppom?branch=master)
-[![Hits-of-Code](https://hitsofcode.com/github/Minlessika/ppom)](https://hitsofcode.com/github/Minlessika/ppom/view)
+[![Test Coverage](https://img.shields.io/codecov/c/github/minlessika/ppom.svg)](https://codecov.io/github/minlessika/ppom?branch=master)
+[![Hits-of-Code](https://hitsofcode.com/github/minlessika/ppom)](https://hitsofcode.com/github/minlessika/ppom/view)
 
 Project architect: [baudoliver7](https://github.com/baudoliver7)
 
 This is a parent [POM](https://maven.apache.org/guides/introduction/introduction-to-the-pom.html) for all Minlessika Maven projects. Include it in project section of `pom.xml`:
 ```xml
   <modelVersion>4.0.0</modelVersion>
-  <artifactId><!-- your artifact id --></artifactId>
-  <version>1.0-SNAPSHOT</version>
   <parent>
-    <groupId>com.minlessika</groupId>
+    <groupId>com.minlessika.erp</groupId>
     <artifactId>ppom</artifactId>
     <version><!-- use latest version --></version>
   </parent>
+  <artifactId><!-- your artifact id --></artifactId>
+  <version>1.0-SNAPSHOT</version>
 ```
 
 ## How to contribute
