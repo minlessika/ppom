@@ -483,7 +483,7 @@ SOFTWARE.
         </plugin>
         <plugin>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.2.0</version>
+          <version>3.3.1</version>
           <configuration>
             <source>8</source>
             <tags>
@@ -869,7 +869,7 @@ SOFTWARE.
                   <goal>jar</goal>
                 </goals>
                 <configuration>
-                  <additionalparam>${javadoc.opts}</additionalparam>
+                  <additionalOptions>${javadoc.opts}</additionalOptions>
                 </configuration>
               </execution>
             </executions>
@@ -901,13 +901,17 @@ SOFTWARE.
       </build>
     </profile>
     <profile>
+      <!--
+      Just run it with -Pjacoco and a coverage report will be generated
+      in target/site/jacoco/jacoco.xml. Then, you can upload this file
+      to codecov.io and enjoy the report.
+      -->
       <id>jacoco</id>
       <build>
         <plugins>
           <plugin>
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.8.5</version>
             <configuration>
               <output>file</output>
             </configuration>
